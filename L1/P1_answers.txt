@@ -1,0 +1,25 @@
+1) The purpose of the gpio_config function is to configure the GPIO interface, in order to allow the CPU to read/output digital pin voltage (there are some register, gates, on the hardware scheme)
+A GPIO pin can be configured as an output/input. Also, acording to the documentation, the pin can be configured as pull down/pull up (using internal pull-up/down resistors), or add handles for the interrupt (when value changes or when on the latch).
+
+GPIO_MODE_DISABLE
+GPIO mode : disable input and output
+
+GPIO_MODE_INPUT
+GPIO mode : input only
+
+GPIO_MODE_OUTPUT
+GPIO mode : output only mode
+
+GPIO_MODE_OUTPUT_OD
+GPIO mode : output only with open-drain mode
+
+GPIO_MODE_INPUT_OUTPUT_OD
+GPIO mode : output and input with open-drain mode
+
+GPIO_MODE_INPUT_OUTPUT
+GPIO mode : output and input mode
+
+vTaskDelay delays the current task with the number of ticks. In order to delay the task in miliseconds, tick rate have been converted into ms.
+
+In documentation it's not well explicty specified why the entry function is called app_main, but there can be several reasons:
+- In order to boot the application, the platform first reaches some steps: loading First stage bootloader, which is hard coded in the chip. The FSB loads SSB, which is stored on the flash. After, SSB loads AN application, acording to a specific configuration (see my undergratuate project for further details). By default configuration, the flash memory has only one application, stored at a specific address. That application includes FreeRTOS stuff, and the entry point the application is main_task. From the main_task, leads to our application entry point, app_main.
