@@ -218,50 +218,6 @@ static void mdns_print_results(mdns_result_t *results)
     }
 }
 
-size_t mdns_result_len(mdns_result_t* results)
-{
-    size_t l = 0;
-    mdns_result_t* r = results;
-    while(r)
-    {
-        l++;
-        r = r->next;
-    }
-}
-
-void mdns_select_and_send(mdns_result_t* results, int i)
-{
-    mdns_result_t* r = results;
-    mdns_ip_addr_t *a = NULL;
-    size_t l = 0;
-    while(r)
-    {
-        if (l == i)
-        {
-            a = r->addr;
-            while(a)
-            {
-                if (a->addr.type == ESP_IPADDR_TYPE_V4)
-                {
-                    // It should send here to the another board
-                    
-                }
-                a = a->next;
-            }
-            ESP_LOGI(TAG, "No IPV4 on that service!");
-        }
-    }
-}
-
-static void mdns_result_rand_send(mdns_result_t *results)
-{
-    mdns_result_t *r = results;
-    size_t length = mdns_result_len(results);
-
-    int rand_number = rand() % length;
-
-}
-
 void find_mdns_service(const char * service_name, const char * proto)
 {
     ESP_LOGI(TAG, "Query PTR: %s.%s.local", service_name, proto);
