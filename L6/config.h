@@ -1,0 +1,7 @@
+#ifndef _CONFIG_H_
+#define _CONFIG_H_
+
+#define CONFIG_EXAMPLE_SCAN_LIST_SIZE 10
+#define CONFIG_ESP_MAXIMUM_RETRY 5
+
+#endif
